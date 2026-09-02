@@ -11,18 +11,7 @@ Visual plates for each release live in [`docs/changelog/`](./docs/changelog/). H
 
 ## [1.1.1] - 2026-09-02
 
-Dark-mode and theme fixes in the plugin UI and live preview. Inserted canvas color defaults are unchanged.
-
-### Fixed
-
-- More platforms heading no longer gets Framer’s dark-mode gray button pill. It matches the Popular heading.
-- Ghost style swatch is fill-only in all states. Selected Ghost keeps the shared blue card chrome; the inner circle stays a readable fill-only ghost. Live preview ghost is fill-only too.
-- Canvas property panel Colors and Hover object controls now use `icon: "object"` like Typography so they get the themed chip in dark mode. Re-insert or replace `ShareButtons.tsx` for that to show.
-- Brand plugin preview in dark mode: near-black brand marks (X, Threads, Copy, Email, Print, Native, Xing) lift to the theme text color for icon, label, and outline. Bright brands stay brand-colored. Hover on inverted marks stays readable.
-
-## [1.1.0] - 2026-09-02
-
-Property panel reorganization after Framer review feedback.
+Same-day release: property panel reorganization plus dark-mode plugin UI. Inserted canvas color defaults are unchanged. Ships as 1.1.1 (includes the 1.1.0 panel work).
 
 ![1.1.0 canvas property panel](docs/changelog/1.1.0-panel.png)
 
@@ -32,6 +21,13 @@ Property panel reorganization after Framer review feedback.
 - Spacing is a top-level control. Appearance, colors, hover, and typography are grouped objects.
 - Appearance uses Framer’s radius control so pills can be Full instead of 999px.
 - Plugin labels match the canvas panel (Content, Style).
+
+### Fixed
+
+- More platforms heading no longer gets Framer’s dark-mode gray button pill. It matches the Popular heading.
+- Ghost style swatch is fill-only in all states. Selected Ghost keeps the shared blue card chrome; the inner circle stays a readable fill-only ghost. Live preview ghost is fill-only too.
+- Canvas property panel Colors and Hover object controls now use `icon: "object"` like Typography so they get the themed chip in dark mode. Re-insert or replace `ShareButtons.tsx` for that to show.
+- Brand plugin preview in dark mode: near-black brand marks (X, Threads, Copy, Email, Print, Native, Xing) lift to the theme text color for icon, label, and outline. Bright brands stay brand-colored. Hover on inverted marks stays readable.
 
 ## [1.0.1] - 2026-08-31
 

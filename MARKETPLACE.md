@@ -4,7 +4,7 @@ Author: Lebel Studio
 Support: hello@wearelebel.com
 Version: 1.1.1
 Pricing: Free unless you choose otherwise before submit. Display any paid price in USD ($).
-Changelog: [CHANGELOG.md](./CHANGELOG.md) (1.0.0, 1.0.1, 1.1.0, 1.1.1). Visual plates: [`docs/changelog/`](./docs/changelog/). Paste the **1.1.1 version notes** below into the dashboard.
+Changelog: [CHANGELOG.md](./CHANGELOG.md) (1.0.0, 1.0.1, 1.1.1). Visual plates: [`docs/changelog/`](./docs/changelog/). Paste the **1.1.1 version notes** below into the dashboard.
 
 This product is a **Framer plugin** that inserts a **code component**. That is the correct Marketplace type for an editor insert tool. The live share bar itself is also eligible as a **Component** listing (Assets → right-click → Copy URL).
 
@@ -34,7 +34,7 @@ Official brand marks are included. No account, API key, or external service is r
 
 **1.1.1 version notes** (dashboard changelog field):
 
-Dark-mode plugin UI: More platforms heading matches Popular. Ghost style is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
+Property panel: essentials stay visible (heading, platforms, content, style, direction, align, wrap); spacing is top-level; appearance, colors, hover, and typography are grouped. Appearance uses Framer’s radius control (Full instead of 999px). Plugin labels match the canvas (Content, Style). Dark-mode plugin UI: More platforms heading matches Popular. Ghost style is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
 
 **Tags (select exactly 3):** SEO, Utilities, CMS
 
