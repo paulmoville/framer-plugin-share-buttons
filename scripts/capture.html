@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-framer-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Share Buttons capture</title>
+        <style>
+            :root,
+            [data-framer-theme="light"] {
+                --framer-font-family: "Inter", system-ui, sans-serif;
+                --framer-color-bg: #ffffff;
+                --framer-color-bg-secondary: #f3f3f3;
+                --framer-color-bg-tertiary: #eeeeee;
+                --framer-color-text: #333333;
+                --framer-color-text-secondary: #888888;
+                --framer-color-text-tertiary: #aaaaaa;
+                --framer-color-text-reversed: #ffffff;
+                --framer-color-divider: #e6e6e6;
+                --framer-color-tint: #0099ff;
+                --framer-color-tint-dark: #0088ee;
+                --framer-color-tint-extra-dark: #0077ff;
+                --framer-color-tint-dimmed: rgba(0, 153, 255, 0.12);
+                --framer-color-control: #eeeeee;
+                --framer-color-control-hover: #e6e6e6;
+            }
+
+            html,
+            body,
+            #root {
+                margin: 0;
+                padding: 0;
+                width: auto;
+                height: auto;
+                min-width: 0;
+                min-height: 0;
+                overflow: hidden;
+            }
+
+            html.view-plugin,
+            html.view-plugin body,
+            html.view-plugin #root,
+            html.view-plugin #plugin-frame {
+                width: 760px;
+                height: 760px;
+                background: #ffffff;
+            }
+
+            #plugin-frame {
+                overflow: hidden;
+            }
+
+            html.view-bar,
+            html.view-bar body,
+            html.view-bar #root {
+                width: 1400px;
+                height: 160px;
+                background: #ff00ff !important;
+            }
+
+            #bar-frame {
+                box-sizing: border-box;
+                width: 1400px;
+                height: 160px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent !important;
+            }
+
+            #bar-frame .preview-frame,
+            #bar-frame .preview-frame.is-inline {
+                background: transparent !important;
+                border: 0;
+                box-shadow: none;
+                transform: scale(2.15);
+                transform-origin: center center;
+            }
+
+            #bar-frame .preview-row.is-labeled {
+                display: flex !important;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 8px;
+            }
+
+            #bar-frame .preview-btn {
+                width: auto !important;
+            }
+        </style>
+        <script>
+            document.documentElement.classList.add(
+                new URLSearchParams(location.search).get("view") === "bar"
+                    ? "view-bar"
+                    : "view-plugin"
+            )
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="./capture-main.tsx"></script>
+    </body>
+</html>

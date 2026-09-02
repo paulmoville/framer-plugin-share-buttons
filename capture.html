@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Share Buttons capture</title>
+        <style>
+            html,
+            body,
+            #root {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                background: #ffffff;
+            }
+
+            .capture-bar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100%;
+                padding: 40px 48px;
+                box-sizing: border-box;
+                background: transparent;
+            }
+
+            .capture-bar .preview-frame,
+            .capture-bar .preview-row {
+                flex-wrap: nowrap !important;
+                width: max-content !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/capture-main.tsx"></script>
+    </body>
+</html>

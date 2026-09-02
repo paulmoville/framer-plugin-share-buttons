@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>1.1.0 property panel</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      background: #ececec;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+    .stage {
+      width: 560px;
+      height: 720px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .panel {
+      width: 260px;
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .caption {
+      width: 228px;
+      padding-top: 8px;
+    }
+    .kicker {
+      margin: 0 0 8px;
+      color: #888;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+    .bar p {
+      margin: 0;
+      color: #333;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .dot {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #e5e5e5;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #111;
+    }
+    .note {
+      margin: 0;
+      color: #888;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 10px;
+      gap: 8px;
+    }
+    .label {
+      color: #888;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 22px;
+      border-radius: 6px;
+      background: #eee;
+      overflow: hidden;
+    }
+    .seg.three { grid-template-columns: 1fr 1fr 1fr; }
+    .seg span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    .seg .on {
+      background: #fff;
+      color: #111;
+      box-shadow: inset 0 0 0 1px #d8d8d8;
+      border-radius: 6px;
+    }
+    .field {
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: #f3f3f3;
+      color: #333;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .field.plain { justify-content: flex-start; }
+    .muted { color: #aaa; font-size: 10px; }
+    .icons { display: flex; gap: 3px; align-items: center; }
+    .icons i {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: #111;
+      display: inline-block;
+    }
+    .rule { height: 1px; background: #eee; margin: 6px 0; }
+    .object {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 32px;
+      padding: 0 10px;
+    }
+    .object .mark {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: #f3f3f3;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .object .name {
+      flex: 1;
+      color: #333;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .object .val {
+      color: #aaa;
+      font-size: 10px;
+    }
+    .chev { color: #bbb; font-size: 10px; }
+    .head {
+      padding: 10px 10px 6px;
+      color: #aaa;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="panel">
+      <div class="head">Share Buttons</div>
+      <div class="row"><span class="label">Heading</span>
+        <div class="seg"><span class="on">Show</span><span>Hide</span></div>
+      </div>
+      <div class="row"><span class="label">Text</span>
+        <div class="field plain">Share this</div>
+      </div>
+      <div class="row"><span class="label">Platforms</span>
+        <div class="field"><span class="icons"><i></i><i></i><i></i></span><span class="muted">Copy link, Em…</span></div>
+      </div>
+      <div class="row"><span class="label">Content</span>
+        <div class="field">Icon <span class="chev">▾</span></div>
+      </div>
+      <div class="row"><span class="label">Style</span>
+        <div class="field">Brand <span class="chev">▾</span></div>
+      </div>
+      <div class="row"><span class="label">Direction</span>
+        <div class="seg"><span class="on">Row</span><span>Column</span></div>
+      </div>
+      <div class="row"><span class="label">Align</span>
+        <div class="seg three">
+          <span class="on">L</span><span>C</span><span>R</span>
+        </div>
+      </div>
+      <div class="row"><span class="label">Wrap</span>
+        <div class="seg"><span class="on">Wrap</span><span>Nowrap</span></div>
+      </div>
+      <div class="row"><span class="label">Spacing</span>
+        <div class="field">8px <span class="muted">−  +</span></div>
+      </div>
+      <div class="rule"></div>
+      <div class="object"><span class="mark">A</span><span class="name">Appearance</span><span class="val">44, 18, Full, 1</span><span class="chev">›</span></div>
+      <div class="object"><span class="mark">●</span><span class="name">Colors</span><span class="val">Object</span><span class="chev">›</span></div>
+      <div class="object"><span class="mark">↗</span><span class="name">Hover</span><span class="val">Object</span><span class="chev">›</span></div>
+      <div class="object"><span class="mark">T</span><span class="name">Typography</span><span class="val">Object</span><span class="chev">›</span></div>
+    </div>
+    <div class="caption">
+      <p class="kicker">1.1.0 · Canvas properties</p>
+      <div class="bar">
+        <p>Share this</p>
+        <span class="dot">⎘</span>
+        <span class="dot">✉</span>
+        <span class="dot">W</span>
+        <span class="dot">f</span>
+      </div>
+      <p class="note">Essentials stay visible. Spacing is a number. Appearance, Colors, Hover, and Typography are grouped objects.</p>
+    </div>
+  </div>
+</body>
+</html>
