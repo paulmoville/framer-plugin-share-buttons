@@ -251,7 +251,15 @@ h2,
     font-weight: 600;
 }
 
-.disclosure {
+button.disclosure,
+button.disclosure:hover,
+button.disclosure:focus,
+button.disclosure:active,
+button.disclosure:disabled,
+[data-framer-theme="dark"] button.disclosure,
+[data-framer-theme="dark"] button.disclosure:not(:disabled):hover,
+[data-framer-theme="dark"] button.disclosure:not(:disabled):focus,
+[data-framer-theme="dark"] button.disclosure:active {
     appearance: none;
     display: flex;
     align-items: center;
@@ -262,25 +270,37 @@ h2,
     height: 28px;
     padding: 0;
     border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
     background: transparent;
+    background-color: transparent;
     color: var(--framer-color-text-tertiary, var(--framer-color-text-secondary));
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
+    overflow: visible;
+    flex-shrink: 0;
+    transition: color 160ms ease;
 }
 
-.disclosure svg {
+button.disclosure svg {
     transition: transform 160ms ease;
 }
 
-.disclosure[aria-expanded="true"] svg {
+button.disclosure[aria-expanded="true"] svg {
     transform: rotate(180deg);
 }
 
-.disclosure:hover {
+button.disclosure:hover,
+button.disclosure:focus,
+[data-framer-theme="dark"] button.disclosure:not(:disabled):hover,
+[data-framer-theme="dark"] button.disclosure:not(:disabled):focus {
     color: var(--framer-color-text);
+    background: transparent;
+    background-color: transparent;
 }
 
 .field {
@@ -348,6 +368,30 @@ h2,
     font-weight: 600;
 }
 
+[data-framer-theme="dark"] button.look-card,
+[data-framer-theme="dark"] button.library-chip,
+[data-framer-theme="dark"] button.appearance-card {
+    background: var(--framer-color-bg);
+    background-color: var(--framer-color-bg);
+}
+
+[data-framer-theme="dark"] button.look-card:not(:disabled):hover,
+[data-framer-theme="dark"] button.library-chip:not(:disabled):hover,
+[data-framer-theme="dark"] button.appearance-card:not(:disabled):hover {
+    background: var(--framer-color-bg-secondary);
+    background-color: var(--framer-color-bg-secondary);
+}
+
+[data-framer-theme="dark"] button.look-card.is-selected,
+[data-framer-theme="dark"] button.look-card.is-selected:not(:disabled):hover,
+[data-framer-theme="dark"] button.library-chip.is-selected,
+[data-framer-theme="dark"] button.library-chip.is-selected:not(:disabled):hover,
+[data-framer-theme="dark"] button.appearance-card.is-selected,
+[data-framer-theme="dark"] button.appearance-card.is-selected:not(:disabled):hover {
+    background: var(--framer-color-tint-dimmed);
+    background-color: var(--framer-color-tint-dimmed);
+}
+
 .look-swatch {
     width: 28px;
     height: 28px;
@@ -365,12 +409,16 @@ h2,
 }
 
 .look-swatch-ghost {
-    background: rgba(17, 17, 17, 0.06);
+    border: 0;
+    box-shadow: none;
+    background: color-mix(in srgb, var(--framer-color-text) 26%, transparent);
 }
 
-.look-card.is-selected .look-swatch-ghost {
-    background: var(--framer-color-tint-dimmed);
-    box-shadow: inset 0 0 0 1.5px var(--framer-color-tint);
+.look-card.is-selected .look-swatch-ghost,
+.look-card.is-selected:hover .look-swatch-ghost {
+    border: 0;
+    box-shadow: none;
+    background: color-mix(in srgb, var(--framer-color-text) 34%, transparent);
 }
 
 .look-swatch-brand {
@@ -615,6 +663,33 @@ h2,
     white-space: nowrap;
 }
 
+[data-framer-theme="dark"] .preview-btn.is-dark-brand {
+    color: var(--framer-color-text) !important;
+    border-color: var(--framer-color-text) !important;
+}
+
+[data-framer-theme="dark"] .preview-btn.is-dark-brand svg {
+    color: var(--framer-color-text) !important;
+}
+
+[data-framer-theme="dark"] .preview-btn.is-dark-brand svg [stroke] {
+    stroke: var(--framer-color-text) !important;
+}
+
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover {
+    background: var(--framer-color-text) !important;
+    color: #111111 !important;
+    border-color: var(--framer-color-text) !important;
+}
+
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover svg {
+    color: #111111 !important;
+}
+
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover svg [stroke] {
+    stroke: #111111 !important;
+}
+
 .preview-empty {
     margin: 0;
     font-size: 12px;
@@ -648,7 +723,8 @@ h2,
 .library-chip,
 .appearance-card,
 .segmented button,
-.actions button {
+.actions button,
+button.disclosure {
     font-family: inherit;
 }
 

@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react"
+import { useEffect, useState, type CSSProperties } from "react"
 
 type PlatformId =
     | "copy"
@@ -121,6 +121,68 @@ const TEXT = "#111111"
 const BORDER = "#E5E5E5"
 const HOVER_BG = "#F5F5F5"
 const FILLED_HOVER = "#000000"
+const DARK_BRAND_LUMINANCE = 0.2
+const PREVIEW_ON_DARK = "var(--framer-color-text)"
+const PREVIEW_ON_LIGHT = "#111111"
+
+function readFramerThemeDark() {
+    if (typeof document === "undefined") return false
+    const root = document.documentElement
+    if (root.dataset.framerTheme === "dark") return true
+    if (root.getAttribute("data-framer-theme") === "dark") return true
+    const bg = getComputedStyle(root).getPropertyValue("--framer-color-bg").trim()
+    return Boolean(bg) && isDarkBrand(bg)
+}
+
+function useFramerThemeDark() {
+    const [isDark, setIsDark] = useState(readFramerThemeDark)
+
+    useEffect(() => {
+        const root = document.documentElement
+        const sync = () => setIsDark(readFramerThemeDark())
+        sync()
+        const observer = new MutationObserver(sync)
+        observer.observe(root, { attributes: true, attributeFilter: ["data-framer-theme", "style", "class"] })
+        return () => observer.disconnect()
+    }, [])
+
+    return isDark
+}
+
+function channelLuminance(n: number) {
+    const c = n / 255
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
+}
+
+function hexLuminance(color: string) {
+    const hex = color.trim()
+    const short = hex.match(/^#([0-9a-f]{3})$/i)
+    const full = hex.match(/^#([0-9a-f]{6})$/i)
+    const rgb = hex.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i)
+    let r = 255
+    let g = 255
+    let b = 255
+    if (full) {
+        r = parseInt(full[1].slice(0, 2), 16)
+        g = parseInt(full[1].slice(2, 4), 16)
+        b = parseInt(full[1].slice(4, 6), 16)
+    } else if (short) {
+        r = parseInt(short[1][0] + short[1][0], 16)
+        g = parseInt(short[1][1] + short[1][1], 16)
+        b = parseInt(short[1][2] + short[1][2], 16)
+    } else if (rgb) {
+        r = Number(rgb[1])
+        g = Number(rgb[2])
+        b = Number(rgb[3])
+    } else {
+        return 1
+    }
+    return 0.2126 * channelLuminance(r) + 0.7152 * channelLuminance(g) + 0.0722 * channelLuminance(b)
+}
+
+function isDarkBrand(hex: string) {
+    return hexLuminance(hex) < DARK_BRAND_LUMINANCE
+}
 
 export function PlatformIcon({
     id,
@@ -212,9 +274,12 @@ function chromeFor(
     id: PlatformId,
     buttonStyle: ButtonStyle,
     appearance: Appearance,
-    isHovered: boolean
+    isHovered: boolean,
+    isDark: boolean
 ) {
-    const brand = BRAND_COLORS[id] || ICON
+    const rawBrand = BRAND_COLORS[id] || ICON
+    const invertBrand = isDark && buttonStyle === "brand" && isDarkBrand(rawBrand)
+    const brand = invertBrand ? PREVIEW_ON_DARK : rawBrand
     const brandIcon = buttonStyle === "brand" && appearance === "icon"
     let bg = BACKGROUND
     let fg = ICON
@@ -226,9 +291,9 @@ function chromeFor(
         labelColor = brand
         border = "none"
     } else if (buttonStyle === "brand") {
-        bg = isHovered ? brand : "transparent"
-        fg = isHovered ? BACKGROUND : brand
-        labelColor = isHovered ? BACKGROUND : brand
+        bg = isHovered ? (invertBrand ? PREVIEW_ON_DARK : brand) : "transparent"
+        fg = isHovered ? (invertBrand ? PREVIEW_ON_LIGHT : BACKGROUND) : brand
+        labelColor = isHovered ? (invertBrand ? PREVIEW_ON_LIGHT : BACKGROUND) : brand
         border = `1px solid ${brand}`
     } else if (buttonStyle === "filled") {
         bg = isHovered ? FILLED_HOVER : ICON
@@ -236,9 +301,11 @@ function chromeFor(
         labelColor = BACKGROUND
         border = `1px solid ${isHovered ? FILLED_HOVER : ICON}`
     } else if (buttonStyle === "ghost") {
-        bg = isHovered ? HOVER_BG : "rgba(17, 17, 17, 0.05)"
-        fg = ICON
-        labelColor = TEXT
+        bg = isHovered
+            ? "var(--framer-color-bg-secondary)"
+            : "color-mix(in srgb, var(--framer-color-text) 22%, transparent)"
+        fg = "var(--framer-color-text)"
+        labelColor = "var(--framer-color-text)"
         border = "none"
     } else {
         bg = isHovered ? HOVER_BG : BACKGROUND
@@ -246,7 +313,7 @@ function chromeFor(
         labelColor = TEXT
         border = `1px solid ${BORDER}`
     }
-    return { brand, brandIcon, bg, fg, labelColor, border }
+    return { brand, brandIcon, bg, fg, labelColor, border, darkBrand: isDarkBrand(rawBrand) }
 }
 
 export function SharePreview({
@@ -261,6 +328,7 @@ export function SharePreview({
     heading: string
 }) {
     const [hovered, setHovered] = useState<PlatformId | null>(null)
+    const isDark = useFramerThemeDark()
     const title = heading.trim()
     const showIcon = appearance !== "label"
     const showLabel = appearance !== "icon"
@@ -289,13 +357,17 @@ export function SharePreview({
                 <div className={rowClass}>
                     {platforms.map((id) => {
                         const isHovered = hovered === id
-                        const { brandIcon: mark, bg, fg, labelColor, border } =
-                            chromeFor(id, buttonStyle, appearance, isHovered)
+                        const { brandIcon: mark, bg, fg, labelColor, border, darkBrand } =
+                            chromeFor(id, buttonStyle, appearance, isHovered, isDark)
 
                         return (
                             <div
                                 key={id}
-                                className="preview-btn"
+                                className={
+                                    buttonStyle === "brand" && darkBrand
+                                        ? "preview-btn is-dark-brand"
+                                        : "preview-btn"
+                                }
                                 aria-hidden={true}
                                 onMouseEnter={() => setHovered(id)}
                                 onMouseLeave={() => setHovered(null)}

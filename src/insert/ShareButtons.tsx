@@ -1693,7 +1693,7 @@ addPropertyControls(ShareButtons, {
     colors: {
         type: ControlType.Object,
         title: "Colors",
-        icon: "color",
+        icon: "object",
         defaultValue: {
             fill: FALLBACK_FILL,
             icon: FALLBACK_ICON_COLOR,
@@ -1726,7 +1726,7 @@ addPropertyControls(ShareButtons, {
     hover: {
         type: ControlType.Object,
         title: "Hover",
-        icon: "interaction",
+        icon: "object",
         defaultValue: {
             background: FALLBACK_HOVER_BACKGROUND,
             icon: FALLBACK_HOVER_ICON,

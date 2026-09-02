@@ -4,7 +4,7 @@ A Framer plugin by **Lebel Studio** that inserts a customizable social share bar
 
 Visitors can copy a link, email it, or share to Facebook, X, LinkedIn, WhatsApp, and more. Social networks receive the **current page URL only**, so Framer Page Settings (title, description, social image) keep working for SEO and Open Graph.
 
-**Version 1.1.0.** See [CHANGELOG.md](./CHANGELOG.md) for release history and visual plates.
+**Version 1.1.1.** See [CHANGELOG.md](./CHANGELOG.md) for release history and visual plates.
 
 ## Use
 

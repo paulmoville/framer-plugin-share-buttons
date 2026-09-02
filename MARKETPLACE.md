@@ -2,9 +2,9 @@
 
 Author: Lebel Studio
 Support: hello@wearelebel.com
-Version: 1.1.0
+Version: 1.1.1
 Pricing: Free unless you choose otherwise before submit. Display any paid price in USD ($).
-Changelog: [CHANGELOG.md](./CHANGELOG.md) (1.0.0, 1.0.1, 1.1.0). Visual plates: [`docs/changelog/`](./docs/changelog/). Paste the **1.1.0 version notes** below into the dashboard.
+Changelog: [CHANGELOG.md](./CHANGELOG.md) (1.0.0, 1.0.1, 1.1.0, 1.1.1). Visual plates: [`docs/changelog/`](./docs/changelog/). Paste the **1.1.1 version notes** below into the dashboard.
 
 This product is a **Framer plugin** that inserts a **code component**. That is the correct Marketplace type for an editor insert tool. The live share bar itself is also eligible as a **Component** listing (Assets → right-click → Copy URL).
 
@@ -32,9 +32,9 @@ Shares send the current page URL. They do not override title, description, or so
 
 Official brand marks are included. No account, API key, or external service is required.
 
-**1.1.0 version notes** (dashboard changelog field):
+**1.1.1 version notes** (dashboard changelog field):
 
-Property panel: essentials first, then Spacing. Appearance, Colors, Hover, and Typography are grouped. Plugin labels are Content and Style. Insert still asks before replacing ShareButtons.tsx.
+Dark-mode plugin UI: More platforms heading matches Popular. Ghost style is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
 
 **Tags (select exactly 3):** SEO, Utilities, CMS
 
@@ -111,5 +111,5 @@ Email hello@wearelebel.com. Reply to buyers promptly. Keep the plugin updated as
 - [ ] No ads inside the plugin
 - [ ] Listing matches shipped features (Content / Style, grouped Properties, insert confirm)
 - [ ] Author / support shown as Lebel Studio / hello@wearelebel.com
-- [ ] Version notes for 1.1.0 pasted from this file
+- [ ] Version notes for 1.1.1 pasted from this file
 - [x] Visual plates in CHANGELOG.md and docs/changelog/
