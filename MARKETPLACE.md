@@ -24,7 +24,7 @@ Use these values in [Framer Marketplace → Plugins](https://www.framer.com/mark
 
 Share Buttons adds a brandable share bar to any Framer page or CMS detail template.
 
-Choose platforms, content, and style in the plugin, then insert on the canvas. On the selected layer, essentials stay in Properties (heading, platforms, content, style, direction, align, wrap, spacing). Appearance, colors, hover, and typography are grouped objects.
+Choose platforms, look, and appearance in the plugin, then insert on the canvas. On the selected layer, essentials stay in Properties (heading, platforms, appearance, look, direction, align, wrap, spacing). Size, colors, hover, and typography are grouped objects.
 
 Visitors can copy the link, email it, print, use the device share sheet, or post to Facebook, X, Threads, Bluesky, LinkedIn, Pinterest, Reddit, WhatsApp, Telegram, and more.
 
@@ -34,7 +34,7 @@ Official brand marks are included. No account, API key, or external service is r
 
 **1.1.1 version notes** (dashboard changelog field):
 
-Property panel: essentials stay visible (heading, platforms, content, style, direction, align, wrap); spacing is top-level; appearance, colors, hover, and typography are grouped. Appearance uses Framer’s radius control (Full instead of 999px). Plugin labels match the canvas (Content, Style). Dark-mode plugin UI: More platforms heading matches Popular. Ghost style is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
+Property panel: essentials stay visible (heading, platforms, appearance, look, direction, align, wrap); spacing is top-level; Size, colors, hover, and typography are grouped. Size uses Framer’s radius control (Full instead of 999px). Plugin labels match the canvas: Look (Outline / Filled / Ghost / Brand) and Appearance (Icon / Icon + label / Label). Dark-mode plugin UI: More platforms heading matches Popular. Ghost look is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
 
 **Tags (select exactly 3):** SEO, Utilities, CMS
 
@@ -109,7 +109,7 @@ Email hello@wearelebel.com. Reply to buyers promptly. Keep the plugin updated as
 - [ ] No auth required — none to disclose
 - [ ] IP: original code; Simple Icons-style brand paths used as marks
 - [ ] No ads inside the plugin
-- [ ] Listing matches shipped features (Content / Style, grouped Properties, insert confirm)
+- [ ] Listing matches shipped features (Look / Appearance, grouped Properties, insert confirm)
 - [ ] Author / support shown as Lebel Studio / hello@wearelebel.com
 - [ ] Version notes for 1.1.1 pasted from this file
 - [x] Visual plates in CHANGELOG.md and docs/changelog/

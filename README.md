@@ -9,7 +9,7 @@ Visitors can copy a link, email it, or share to Facebook, X, LinkedIn, WhatsApp,
 ## Use
 
 1. In Framer: **Menu → Plugins → Share Buttons** (or **Development Plugin** while developing).
-2. Choose platforms, content, and style, then **Insert on canvas**.
+2. Choose platforms, look, and appearance, then **Insert on canvas**.
 3. If the project already has `ShareButtons.tsx`, pick **Keep existing file**, **Replace file and insert**, or **Cancel**. Replacing is how a project picks up a new property panel.
 4. Select the layer and edit in **Properties**. Native Framer Position, Size, Layout, and Effects stay in their own section.
 
@@ -21,14 +21,14 @@ Always visible:
 
 - Heading (Show / Hide) and Text
 - Platforms
-- Content (Icon, Icon + label, Label)
-- Style (Outline, Filled, Ghost, Brand)
+- Appearance (Icon, Icon + label, Label)
+- Look (Outline, Filled, Ghost, Brand)
 - Direction, Align, Wrap
 - Spacing
 
 Grouped objects:
 
-- Appearance — Size, Icon, Radius (native Full), Stroke
+- Size — Size, Icon, Radius (native Full), Stroke
 - Colors — Fill, Icon color, Text color, Border color
 - Hover — Background, Icon color, Text color
 - Typography — Font, Buttons

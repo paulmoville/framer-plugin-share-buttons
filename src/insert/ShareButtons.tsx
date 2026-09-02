@@ -1599,14 +1599,14 @@ addPropertyControls(ShareButtons, {
     },
     appearance: {
         type: ControlType.Enum,
-        title: "Content",
+        title: "Appearance",
         options: ["icon", "icon-label", "label"],
         optionTitles: ["Icon", "Icon + label", "Label"],
         defaultValue: "icon",
     },
     buttonStyle: {
         type: ControlType.Enum,
-        title: "Style",
+        title: "Look",
         options: ["outline", "filled", "ghost", "brand"],
         optionTitles: ["Outline", "Filled", "Ghost", "Brand"],
         defaultValue: "outline",
@@ -1646,7 +1646,7 @@ addPropertyControls(ShareButtons, {
     },
     sizing: {
         type: ControlType.Object,
-        title: "Appearance",
+        title: "Size",
         icon: "effect",
         defaultValue: {
             buttonSize: FALLBACK_BUTTON_SIZE,

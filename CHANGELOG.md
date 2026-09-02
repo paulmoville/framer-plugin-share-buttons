@@ -17,15 +17,15 @@ Same-day release: property panel reorganization plus dark-mode plugin UI. Insert
 
 ### Changed
 
-- Essentials stay visible: heading, platforms, content, style, direction, align, wrap.
-- Spacing is a top-level control. Appearance, colors, hover, and typography are grouped objects.
-- Appearance uses Framer’s radius control so pills can be Full instead of 999px.
-- Plugin labels match the canvas panel (Content, Style).
+- Essentials stay visible: heading, platforms, appearance, look, direction, align, wrap.
+- Spacing is a top-level control. Size, colors, hover, and typography are grouped objects.
+- Size uses Framer’s radius control so pills can be Full instead of 999px.
+- Plugin labels match the canvas: Look (Outline / Filled / Ghost / Brand) and Appearance (Icon / Icon + label / Label). The sizing group is titled Size so it does not collide with Appearance.
 
 ### Fixed
 
 - More platforms heading no longer gets Framer’s dark-mode gray button pill. It matches the Popular heading.
-- Ghost style swatch is fill-only in all states. Selected Ghost keeps the shared blue card chrome; the inner circle stays a readable fill-only ghost. Live preview ghost is fill-only too.
+- Ghost look swatch is fill-only in all states. Selected Ghost keeps the shared blue card chrome; the inner circle stays a readable fill-only ghost. Live preview ghost is fill-only too.
 - Canvas property panel Colors and Hover object controls now use `icon: "object"` like Typography so they get the themed chip in dark mode. Re-insert or replace `ShareButtons.tsx` for that to show.
 - Brand plugin preview in dark mode: near-black brand marks (X, Threads, Copy, Email, Print, Native, Xing) lift to the theme text color for icon, label, and outline. Bright brands stay brand-colored. Hover on inverted marks stays readable.
 

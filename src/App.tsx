@@ -677,7 +677,7 @@ export function App() {
                 </label>
 
                 <section className="block">
-                    <h2>Style</h2>
+                    <h2>Look</h2>
                     <div className="look-grid">
                         {(
                             [
@@ -702,7 +702,7 @@ export function App() {
                 </section>
 
                 <section className="block">
-                    <h2 id="appearance-heading">Content</h2>
+                    <h2 id="appearance-heading">Appearance</h2>
                     <div
                         className="appearance-grid"
                         role="radiogroup"
