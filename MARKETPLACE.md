@@ -1,5 +1,7 @@
 # Marketplace listing
 
+Status: Live at [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/)
+Plugin id: `c2f9e4` (`framer.json`; was `b4c9e1` on the deleted listing)
 Author: Lebel Studio
 Support: hello@wearelebel.com
 Version: 1.1.1
@@ -8,9 +10,11 @@ Changelog: [CHANGELOG.md](./CHANGELOG.md) (1.0.0, 1.0.1, 1.1.1). Visual plates: 
 
 This product is a **Framer plugin** that inserts a **code component**. That is the correct Marketplace type for an editor insert tool. The live share bar itself is also eligible as a **Component** listing (Assets → right-click → Copy URL).
 
+Do not delete the listing. Framer cannot restore a deleted listing or its history. A new submission needs a new `id` in `framer.json` and a fresh `plugin.zip`. Keep `c2f9e4` unless Marketplace support tells you to change it.
+
 ## Dashboard paste
 
-Use these values in [Framer Marketplace → Plugins](https://www.framer.com/marketplace/dashboard/plugins/).
+Use these values in [Framer Marketplace → Plugins](https://www.framer.com/marketplace/dashboard/plugins/) on the existing listing.
 
 **Name:** Share Buttons
 
@@ -48,20 +52,24 @@ If the dashboard still has **Integrations**, change it to **CMS**.
 
 **Thumbnail to upload:** `assets/thumbnail-1600x1200.png` (exactly 1600 × 1200).
 
-**Plugin file:** `plugin.zip` from `npm run pack` (upload as-is; do not rename).
+**Plugin file:** `plugin.zip` from `npm run pack` (upload as-is; do not rename). Confirm `framer.json` still has `"id": "c2f9e4"` before packing.
 
 **Sample remix project (optional listing / demo):** live [functional-learning-254409.framer.app](https://functional-learning-254409.framer.app/) · file [framer.com/projects/edhOHxEcPakY749DoZrN](https://framer.com/projects/edhOHxEcPakY749DoZrN). Enable Remix on that project in Framer if the dashboard asks for a remixable sample. Do not use the CIPUH client project.
 
-## Submit — Plugin
+## Update — Plugin
+
+The listing is live: [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/).
 
 1. Test in a **fresh** Framer project (not only CIPUH). Reload the Development Plugin after packing if you still have `npm run dev` open.
 2. Check the plugin UI in **light and dark** mode.
-3. `npm run pack` in this folder. Upload `plugin.zip` as-is (do not rename).
-4. Open [Marketplace dashboard → Plugins](https://www.framer.com/marketplace/dashboard/plugins/) → New Plugin. (Some accounts still use Community → Post → Plugin.)
-5. Paste the name, byline, description, tags, author, and support email above. Set pricing (USD if paid).
-6. Upload **`assets/thumbnail-1600x1200.png`** (1600 × 1200, plugin panel + share bar, no extra branding).
+3. Keep `"id": "c2f9e4"` in `framer.json`. `npm run pack` in this folder. Upload `plugin.zip` as-is (do not rename).
+4. Open [Marketplace dashboard → Plugins](https://www.framer.com/marketplace/dashboard/plugins/) and edit **Share Buttons**. Do not click New Plugin.
+5. Paste the name, byline, description, tags, author, and support email above if those fields drifted. Set pricing (USD if paid).
+6. Upload **`assets/thumbnail-1600x1200.png`** if the thumbnail changed (1600 × 1200, plugin panel + share bar, no extra branding).
 7. Optionally attach the sample remix project and post to the Community feed.
-8. Submit. Listings go live immediately. An automated scan may follow within hours.
+8. Save. An automated scan may follow within hours.
+
+If create fails with “Failed to create plugin,” the zip still has a reserved or deleted id. Do not delete this listing to recover. Change `id` only if Marketplace support asks you to republish from scratch.
 
 ## Submit — Component (optional second listing)
 
@@ -89,7 +97,7 @@ Plugin icon is already 30×30 SVG at `public/icon.svg`.
 
 | Marketplace | Fit |
 |---|---|
-| Framer Plugins | Yes — this zip |
+| Framer Plugins | Yes — live at [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/) |
 | Framer Components | Yes — Copy URL from a product project |
 | Figma Community | No — this runs on the published site, not in Figma |
 | Webflow | Would need a separate Webflow component |
@@ -98,15 +106,17 @@ Plugin icon is already 30×30 SVG at `public/icon.svg`.
 
 Email hello@wearelebel.com. Reply to buyers promptly. Keep the plugin updated as Framer evolves.
 
-## Pre-submit checklist
+## Live listing checklist
 
-- [ ] Icon and name are final (`framer.json` name is Share Buttons)
-- [ ] Core insert / apply / share flows tested
+- [x] Live at [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/)
+- [x] Plugin id `c2f9e4` in `framer.json` and packed `plugin.zip`
+- [x] Icon and name are final (`framer.json` name is Share Buttons)
+- [x] 1600 × 1200 thumbnail (`assets/thumbnail-1600x1200.png`)
+- [x] Visual plates in CHANGELOG.md and docs/changelog/
+- [ ] Core insert / apply / share flows tested after republish
 - [ ] Tested in a fresh project
 - [ ] Light and dark plugin UI
 - [ ] English UI only
-- [x] 1600 × 1200 thumbnail (`assets/thumbnail-1600x1200.png`)
-- [x] `plugin.zip` packed from current source (upload as-is; do not rename)
 - [ ] Pricing in USD if paid
 - [ ] No auth required — none to disclose
 - [ ] IP: original code; Simple Icons-style brand paths used as marks
@@ -114,4 +124,3 @@ Email hello@wearelebel.com. Reply to buyers promptly. Keep the plugin updated as
 - [ ] Listing matches shipped features (Look / Appearance, grouped Properties, insert confirm)
 - [ ] Author / support shown as Lebel Studio / hello@wearelebel.com
 - [ ] Version notes for 1.1.1 pasted from this file
-- [x] Visual plates in CHANGELOG.md and docs/changelog/

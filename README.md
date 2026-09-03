@@ -4,7 +4,7 @@ A Framer plugin by **Lebel Studio** that inserts a customizable social share bar
 
 Visitors can copy a link, email it, or share to Facebook, X, LinkedIn, WhatsApp, and more. Social networks receive the **current page URL only**, so Framer Page Settings (title, description, social image) keep working for SEO and Open Graph.
 
-**Version 1.1.1.** See [CHANGELOG.md](./CHANGELOG.md) for release history and visual plates.
+**Version 1.1.1.** Live on the [Framer Marketplace](https://www.framer.com/marketplace/plugins/share-buttons/). See [CHANGELOG.md](./CHANGELOG.md) for release history and visual plates.
 
 ## Use
 
@@ -44,13 +44,15 @@ Then in Framer: **Menu → Plugins → Development Plugin**. After code-file cha
 
 ## Pack for Marketplace
 
+Listing: [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/). Plugin id in `framer.json` is `c2f9e4`.
+
 ```bash
 npm run pack
 ```
 
-Upload the generated `plugin.zip`. Do not rename the zip. The listing name comes from `framer.json`.
+Upload the generated `plugin.zip` to the existing listing. Do not rename the zip. The listing name comes from `framer.json`.
 
-See [MARKETPLACE.md](./MARKETPLACE.md) for listing copy, assets, and the submit checklist.
+See [MARKETPLACE.md](./MARKETPLACE.md) for listing copy, assets, and how to update.
 
 ## Visual changelog
 
