@@ -7,7 +7,7 @@ import {
 import { useCallback, useLayoutEffect, useMemo, useState, type KeyboardEvent } from "react"
 import pluginManifestSource from "../framer.json?raw"
 import shareButtonsSource from "./insert/ShareButtons.tsx?raw"
-import { PlatformIcon, SharePreview } from "./Preview.tsx"
+import { isNearBlackBrand, isPluginLiftBrand, PlatformIcon, SharePreview } from "./Preview.tsx"
 import "./App.css"
 
 const CODE_FILE_NAME = "ShareButtons.tsx"
@@ -178,15 +178,20 @@ function LibraryChip({
     selected: boolean
     onClick: () => void
 }) {
+    const lift = isPluginLiftBrand(id)
     return (
         <button
             type="button"
-            className={selected ? "library-chip is-selected" : "library-chip"}
+            className={`library-chip${selected ? " is-selected" : ""}${lift ? " is-near-black-brand" : ""}`}
             title={label}
             aria-pressed={selected}
             onClick={onClick}
         >
-            <PlatformIcon id={id} size={14} />
+            <PlatformIcon
+                id={id}
+                size={14}
+                color={isNearBlackBrand(id) ? "currentColor" : undefined}
+            />
             <span>{label}</span>
         </button>
     )
@@ -205,9 +210,13 @@ function AppearanceMark({
     id: PlatformId
     background: string
 }) {
+    const lift = isPluginLiftBrand(id) || isNearBlackBrand(id)
     return (
-        <span className="appearance-mark" style={{ background }}>
-            <PlatformIcon id={id} color="#fff" size={8} />
+        <span
+            className={lift ? "appearance-mark is-near-black-brand" : "appearance-mark"}
+            style={{ background }}
+        >
+            <PlatformIcon id={id} color="currentColor" size={8} />
         </span>
     )
 }

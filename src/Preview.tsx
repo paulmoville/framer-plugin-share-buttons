@@ -122,8 +122,17 @@ const BORDER = "#E5E5E5"
 const HOVER_BG = "#F5F5F5"
 const FILLED_HOVER = "#000000"
 const DARK_BRAND_LUMINANCE = 0.2
+const NEAR_BLACK_LUMINANCE = 0.03
+const MIN_UI_CONTRAST = 3
 const PREVIEW_ON_DARK = "var(--framer-color-text)"
 const PREVIEW_ON_LIGHT = "#111111"
+const FALLBACK_DARK_SURFACE = "#111111"
+
+function readFramerSurface() {
+    if (typeof document === "undefined") return FALLBACK_DARK_SURFACE
+    const bg = getComputedStyle(document.documentElement).getPropertyValue("--framer-color-bg").trim()
+    return bg || FALLBACK_DARK_SURFACE
+}
 
 function readFramerThemeDark() {
     if (typeof document === "undefined") return false
@@ -134,7 +143,7 @@ function readFramerThemeDark() {
     return Boolean(bg) && isDarkBrand(bg)
 }
 
-function useFramerThemeDark() {
+export function useFramerThemeDark() {
     const [isDark, setIsDark] = useState(readFramerThemeDark)
 
     useEffect(() => {
@@ -158,7 +167,7 @@ function hexLuminance(color: string) {
     const hex = color.trim()
     const short = hex.match(/^#([0-9a-f]{3})$/i)
     const full = hex.match(/^#([0-9a-f]{6})$/i)
-    const rgb = hex.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i)
+    const rgb = hex.match(/^rgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)/i)
     let r = 255
     let g = 255
     let b = 255
@@ -184,6 +193,40 @@ function isDarkBrand(hex: string) {
     return hexLuminance(hex) < DARK_BRAND_LUMINANCE
 }
 
+function contrastRatio(foreground: string, background: string) {
+    const a = hexLuminance(foreground)
+    const b = hexLuminance(background)
+    const [hi, lo] = a > b ? [a, b] : [b, a]
+    return (hi + 0.05) / (lo + 0.05)
+}
+
+function brandHex(id: PlatformId) {
+    return BRAND_COLORS[id] ?? ICON
+}
+
+/** Copy/Email/X/Threads/Print/Native — always inherit in plugin chrome. */
+export function isNearBlackBrand(id: PlatformId) {
+    return hexLuminance(brandHex(id)) < NEAR_BLACK_LUMINANCE
+}
+
+/** Near-black plus Tumblr/Xing when they fail 3:1 on a dark chip. Theme-independent. */
+export function isPluginLiftBrand(id: PlatformId) {
+    const brand = brandHex(id)
+    const lum = hexLuminance(brand)
+    if (lum < NEAR_BLACK_LUMINANCE) return true
+    if (lum >= DARK_BRAND_LUMINANCE) return false
+    return contrastRatio(brand, FALLBACK_DARK_SURFACE) < MIN_UI_CONTRAST
+}
+
+/** Near-black marks always lift; mid-dark brands lift only if they fail 3:1 on the surface. */
+export function shouldLiftBrand(brand: string, isDark: boolean, surface?: string) {
+    if (!isDark) return false
+    const lum = hexLuminance(brand)
+    if (lum < NEAR_BLACK_LUMINANCE) return true
+    if (lum >= DARK_BRAND_LUMINANCE) return false
+    return contrastRatio(brand, surface ?? readFramerSurface()) < MIN_UI_CONTRAST
+}
+
 export function PlatformIcon({
     id,
     color,
@@ -193,7 +236,8 @@ export function PlatformIcon({
     color?: string
     size?: number
 }) {
-    const resolved = color ?? BRAND_COLORS[id] ?? ICON
+    const inherit = color === "currentColor" || color === "inherit"
+    const resolved = inherit ? undefined : (color ?? BRAND_COLORS[id] ?? ICON)
     const brandPath = BRAND_PATHS[id]
     if (brandPath) {
         return (
@@ -220,10 +264,10 @@ export function PlatformIcon({
         viewBox: "0 0 24 24",
         fill: "none",
         "aria-hidden": true as const,
-        style: { display: "block", flexShrink: 0 } as CSSProperties,
+        style: { color: resolved, display: "block", flexShrink: 0 } as CSSProperties,
     }
     const stroke = {
-        stroke: resolved,
+        stroke: "currentColor",
         strokeWidth: 1.75,
         strokeLinecap: "round" as const,
         strokeLinejoin: "round" as const,
@@ -278,7 +322,8 @@ function chromeFor(
     isDark: boolean
 ) {
     const rawBrand = BRAND_COLORS[id] || ICON
-    const invertBrand = isDark && buttonStyle === "brand" && isDarkBrand(rawBrand)
+    const liftBrand = isPluginLiftBrand(id)
+    const invertBrand = buttonStyle === "brand" && shouldLiftBrand(rawBrand, isDark)
     const brand = invertBrand ? PREVIEW_ON_DARK : rawBrand
     const brandIcon = buttonStyle === "brand" && appearance === "icon"
     let bg = BACKGROUND
@@ -286,9 +331,13 @@ function chromeFor(
     let labelColor = TEXT
     let border = `1px solid ${BORDER}`
     if (brandIcon) {
+        // Brand + Icon: transparent host, no chrome. fg is the only painted
+        // color. JS theme detection can stay false in the Framer plugin iframe,
+        // so do not rely on invertBrand here — SharePreview always sets
+        // is-near-black-brand and [data-framer-theme="dark"] CSS lifts fg.
         bg = "transparent"
-        fg = brand
-        labelColor = brand
+        fg = invertBrand ? PREVIEW_ON_DARK : rawBrand
+        labelColor = fg
         border = "none"
     } else if (buttonStyle === "brand") {
         bg = isHovered ? (invertBrand ? PREVIEW_ON_DARK : brand) : "transparent"
@@ -313,7 +362,7 @@ function chromeFor(
         labelColor = TEXT
         border = `1px solid ${BORDER}`
     }
-    return { brand, brandIcon, bg, fg, labelColor, border, darkBrand: isDarkBrand(rawBrand) }
+    return { brand, brandIcon, bg, fg, labelColor, border, liftBrand }
 }
 
 export function SharePreview({
@@ -357,15 +406,16 @@ export function SharePreview({
                 <div className={rowClass}>
                     {platforms.map((id) => {
                         const isHovered = hovered === id
-                        const { brandIcon: mark, bg, fg, labelColor, border, darkBrand } =
+                        const { brandIcon: mark, bg, fg, labelColor, border, liftBrand } =
                             chromeFor(id, buttonStyle, appearance, isHovered, isDark)
+                        const inheritBrandMark = buttonStyle === "brand" && liftBrand
 
                         return (
                             <div
                                 key={id}
                                 className={
-                                    buttonStyle === "brand" && darkBrand
-                                        ? "preview-btn is-dark-brand"
+                                    inheritBrandMark
+                                        ? "preview-btn is-near-black-brand"
                                         : "preview-btn"
                                 }
                                 aria-hidden={true}
@@ -392,7 +442,10 @@ export function SharePreview({
                                 }}
                             >
                                 {showIcon ? (
-                                    <PlatformIcon id={id} color={fg} />
+                                    <PlatformIcon
+                                        id={id}
+                                        color={inheritBrandMark ? "currentColor" : fg}
+                                    />
                                 ) : null}
                                 {showLabel ? <span>{LABELS[id]}</span> : null}
                             </div>

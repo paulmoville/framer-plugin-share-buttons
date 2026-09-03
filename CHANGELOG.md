@@ -27,7 +27,7 @@ Same-day release: property panel reorganization plus dark-mode plugin UI. Insert
 - More platforms heading no longer gets Framer’s dark-mode gray button pill. It matches the Popular heading.
 - Ghost look swatch is fill-only in all states. Selected Ghost keeps the shared blue card chrome; the inner circle stays a readable fill-only ghost. Live preview ghost is fill-only too.
 - Canvas property panel Colors and Hover object controls now use `icon: "object"` like Typography so they get the themed chip in dark mode. Re-insert or replace `ShareButtons.tsx` for that to show.
-- Brand plugin preview in dark mode: near-black brand marks (X, Threads, Copy, Email, Print, Native, Xing) lift to the theme text color for icon, label, and outline. Bright brands stay brand-colored. Hover on inverted marks stays readable.
+- Dark-mode plugin library chips and Brand look preview (Icon, Icon + label, Label): near-black marks (Copy, Email, X, Threads, Print, Native; Tumblr/Xing when they fail 3:1 on a dark chip) lift to the theme text color. Chromatic brands stay brand-colored. Light mode stays black. Canvas ShareButtons color defaults are unchanged. The plugin iframe can keep React theme detection on light, so the lift is a static `is-near-black-brand` class gated on `[data-framer-theme="dark"]`.
 
 ## [1.0.1] - 2026-08-31
 

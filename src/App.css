@@ -506,6 +506,7 @@ button.disclosure:focus,
     height: 12px;
     border-radius: 50%;
     flex-shrink: 0;
+    color: #fff;
 }
 
 .appearance-plus {
@@ -663,30 +664,46 @@ button.disclosure:focus,
     white-space: nowrap;
 }
 
-[data-framer-theme="dark"] .preview-btn.is-dark-brand {
+/* Framer sets data-framer-theme on the plugin html. Do not gate this on JS. */
+[data-framer-theme="dark"] .library-chip.is-near-black-brand svg,
+[data-framer-theme="dark"] .preview-btn.is-near-black-brand,
+[data-framer-theme="dark"] .preview-btn.is-near-black-brand svg {
     color: var(--framer-color-text) !important;
+}
+
+[data-framer-theme="dark"] .preview-btn.is-near-black-brand {
     border-color: var(--framer-color-text) !important;
 }
 
-[data-framer-theme="dark"] .preview-btn.is-dark-brand svg {
-    color: var(--framer-color-text) !important;
-}
-
-[data-framer-theme="dark"] .preview-btn.is-dark-brand svg [stroke] {
+[data-framer-theme="dark"] .library-chip.is-near-black-brand svg,
+[data-framer-theme="dark"] .library-chip.is-near-black-brand svg [stroke],
+[data-framer-theme="dark"] .preview-btn.is-near-black-brand svg,
+[data-framer-theme="dark"] .preview-btn.is-near-black-brand svg [stroke] {
     stroke: var(--framer-color-text) !important;
 }
 
-[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover {
+[data-framer-theme="dark"] .appearance-mark.is-near-black-brand {
+    background: var(--framer-color-text) !important;
+    color: var(--framer-color-bg) !important;
+}
+
+[data-framer-theme="dark"] .appearance-mark.is-near-black-brand svg,
+[data-framer-theme="dark"] .appearance-mark.is-near-black-brand svg [stroke] {
+    color: var(--framer-color-bg) !important;
+    stroke: var(--framer-color-bg) !important;
+}
+
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-near-black-brand:hover {
     background: var(--framer-color-text) !important;
     color: #111111 !important;
     border-color: var(--framer-color-text) !important;
 }
 
-[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover svg {
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-near-black-brand:hover svg {
     color: #111111 !important;
 }
 
-[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-dark-brand:hover svg [stroke] {
+[data-framer-theme="dark"] .preview-row:not(.is-brand-marks) .preview-btn.is-near-black-brand:hover svg [stroke] {
     stroke: #111111 !important;
 }
 

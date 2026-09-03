@@ -32,9 +32,11 @@ Shares send the current page URL. They do not override title, description, or so
 
 Official brand marks are included. No account, API key, or external service is required.
 
+The plugin panel stays readable in Framer dark mode. Near-black library chips and Brand look marks lift to the theme text color; light mode stays black. Inserted canvas color defaults are unchanged.
+
 **1.1.1 version notes** (dashboard changelog field):
 
-Property panel: essentials stay visible (heading, platforms, appearance, look, direction, align, wrap); spacing is top-level; Size, colors, hover, and typography are grouped. Size uses Framer’s radius control (Full instead of 999px). Plugin labels match the canvas: Look (Outline / Filled / Ghost / Brand) and Appearance (Icon / Icon + label / Label). Dark-mode plugin UI: More platforms heading matches Popular. Ghost look is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Near-black brand marks in the plugin preview lift to the theme text color.
+Property panel: essentials stay visible (heading, platforms, appearance, look, direction, align, wrap); spacing is top-level; Size, colors, hover, and typography are grouped. Size uses Framer’s radius control (Full instead of 999px). Plugin labels match the canvas: Look (Outline / Filled / Ghost / Brand) and Appearance (Icon / Icon + label / Label). Dark-mode plugin UI: More platforms heading matches Popular. Ghost look is fill-only. Colors and Hover property chips use the object icon (re-insert or replace ShareButtons.tsx). Library chips and Brand look (Icon, Icon + label, Label) lift near-black marks (Copy, Email, X, Threads, Print, Native; Tumblr/Xing when they fail 3:1) to the theme text color. Light mode stays black. Canvas component colors are unchanged.
 
 **Tags (select exactly 3):** SEO, Utilities, CMS
 
