@@ -5,9 +5,13 @@ All notable changes to Share Buttons are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Visual plates for each release live in [`docs/changelog/`](./docs/changelog/). HTML sources are there too if a plate needs to be re-rendered. Marketplace paste lives in [MARKETPLACE.md](./MARKETPLACE.md).
+Visual plates for each release live in [`docs/changelog/`](./docs/changelog/). HTML sources are there too if a plate needs to be re-rendered. Marketplace paste lives in [MARKETPLACE.md](./MARKETPLACE.md). Live listing: [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/).
 
 ## [Unreleased]
+
+### Changed
+
+- Marketplace listing republished after accidental deletion. Plugin id is now `c2f9e4` (was `b4c9e1`). Live: [https://www.framer.com/marketplace/plugins/share-buttons/](https://www.framer.com/marketplace/plugins/share-buttons/). Product version stays 1.1.1.
 
 ## [1.1.1] - 2026-09-02
 
